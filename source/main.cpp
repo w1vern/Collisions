@@ -3,6 +3,7 @@
 
 int main(void)
 {
+    
     counter(2, "aboba");
     GLFWwindow* window;
 
