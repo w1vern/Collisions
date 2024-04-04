@@ -1,6 +1,12 @@
 #include <GLFW/glfw3.h>
 #include <counter.h>
 
+struct Vec3 {
+    double x;
+    double y;
+    double z;
+};
+
 int main(void)
 {
     
@@ -26,12 +32,6 @@ int main(void)
             .5f, -.5f, .0f,
             .0f, .5f, .0f
         };
-        
-
-
-
-
-
         glClear(GL_COLOR_BUFFER_BIT);
         glfwSwapBuffers(window);
         glfwPollEvents();

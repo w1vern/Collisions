@@ -2,7 +2,15 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
 
 project(draw_collisions)
 
-find_package( OpenGL REQUIRED )
+#-------------
+
+find_package(GLEW REQUIRED)
+include_directories(${GLEW_INCLUDE_DIRS})
+link_libraries(${GLEW_LIBRARIES})
+
+#-------------
+
+#find_package( OpenGL REQUIRED )
 
 include_directories( ${OPENGL_INCLUDE_DIRS} )
 
@@ -22,6 +30,8 @@ endif()
 add_subdirectory(counter)
 include_directories(counter)
 
-add_executable( draw_collisions ./source/main.cpp )
-target_link_libraries( draw_collisions ${OPENGL_LIBRARIES} glfw _counter)
+
+
+add_executable( draw_collisions WIN32 ./source/main.cpp ${GLAD_GL} )
+target_link_libraries( draw_collisions ${OPENGL_LIBRARIES} glfw GLEW::GLEW _counter)
 
