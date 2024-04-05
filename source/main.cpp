@@ -1,17 +1,23 @@
+#include <GL/glew.h>
+#define GLEW_STATIC
 #include <GLFW/glfw3.h>
 #include <counter.h>
+#include "../math_lib/include/math_cpp.h"
+#include <fstream>
 
-struct Vec3 {
-    double x;
-    double y;
-    double z;
-};
+
 
 int main(void)
 {
     
-    counter(2, "aboba");
-    GLFWwindow* window;
+    counter(2, "output1");
+    std::ofstream out2;
+    out2.open("output2.log");
+    mth::Matrix matrix{2, 2, {1, 2, 3, 4}};
+    out2 << matrix.ToString();
+    out2.close();
+
+    /*GLFWwindow* window;
 
     if (!glfwInit())
         return -1;
@@ -37,6 +43,6 @@ int main(void)
         glfwPollEvents();
     }
 
-    glfwTerminate();
+    glfwTerminate(); */
     return 0;
 }

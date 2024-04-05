@@ -4,9 +4,12 @@ project(draw_collisions)
 
 #-------------
 
-find_package(GLEW REQUIRED)
-include_directories(${GLEW_INCLUDE_DIRS})
-link_libraries(${GLEW_LIBRARIES})
+#find_package(GLEW REQUIRED)
+#include_directories(${GLEW_INCLUDE_DIRS})
+#link_libraries(${GLEW_LIBRARIES})
+
+include_directories(${CMAKE_SOURCE_DIR}/glew/include)
+
 
 #-------------
 
@@ -27,11 +30,24 @@ if( draw_collisions-USE-GLFW-GLAD )
     set( GLAD_GL "${GLFW_SOURCE_DIR}/deps/glad/gl.h" )
 endif()
 
+if( MSVC )
+    SET( CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /ENTRY:mainCRTStartup" )
+endif()
+
 add_subdirectory(counter)
-include_directories(counter)
+include_directories(${CMAKE_SOURCE_DIR}/counter)
+include_directories(${CMAKE_SOURCE_DIR}/math_lib/include)
 
 
 
-add_executable( draw_collisions WIN32 ./source/main.cpp ${GLAD_GL} )
-target_link_libraries( draw_collisions ${OPENGL_LIBRARIES} glfw GLEW::GLEW _counter)
+add_executable( draw_collisions ./source/main.cpp)
+target_link_libraries( draw_collisions ${OPENGL_LIBRARIES} glfw ${CMAKE_SOURCE_DIR}/glew/lib/Release/x64/glew32.lib _counter ${CMAKE_SOURCE_DIR}/math_lib/math_lib.lib)
+
+if( MSVC )
+    if(${CMAKE_VERSION} VERSION_LESS "3.6.0")
+        message( "\n\t[ WARNING ]\n\n\tCMake version lower than 3.6.\n\n\t - Please update CMake and rerun; OR\n\t - Manually set 'GLFW-CMake-starter' as StartUp Project in Visual Studio.\n" )
+    else()
+        set_property( DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT GLFW-CMake-starter )
+    endif()
+endif()
 
