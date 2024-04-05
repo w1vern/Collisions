@@ -4,11 +4,10 @@ project(draw_collisions)
 
 #-------------
 
-#find_package(GLEW REQUIRED)
-#include_directories(${GLEW_INCLUDE_DIRS})
-#link_libraries(${GLEW_LIBRARIES})
 
-include_directories(${CMAKE_SOURCE_DIR}/glew/include)
+include_directories(${CMAKE_SOURCE_DIR}/glew-cmake/include)
+add_subdirectory(${CMAKE_SOURCE_DIR}/glew-cmake/build/cmake)
+find_package(GLEW REQUIRED)
 
 
 #-------------
@@ -23,7 +22,7 @@ set( GLAD_GL "" )
 
 add_subdirectory( glfw )
 
-option( draw_collisions-USE-GLFW-GLAD "Use GLAD from GLFW" ON )
+option( draw_collisions-USE-GLFW-GLAD "Use GLAD from GLFW" OFF )
 
 if( draw_collisions-USE-GLFW-GLAD )
     include_directories("${GLFW_SOURCE_DIR}/deps")
@@ -35,13 +34,14 @@ if( MSVC )
 endif()
 
 add_subdirectory(counter)
+add_subdirectory(math_cpp)
 include_directories(${CMAKE_SOURCE_DIR}/counter)
-include_directories(${CMAKE_SOURCE_DIR}/math_lib/include)
-
+include_directories(${CMAKE_SOURCE_DIR}/math_cpp)
 
 
 add_executable( draw_collisions ./source/main.cpp)
-target_link_libraries( draw_collisions ${OPENGL_LIBRARIES} glfw ${CMAKE_SOURCE_DIR}/glew/lib/Release/x64/glew32.lib _counter ${CMAKE_SOURCE_DIR}/math_lib/math_lib.lib)
+#${CMAKE_SOURCE_DIR}/glew/lib/Release/x64/glew32s.lib
+target_link_libraries( draw_collisions ${OPENGL_LIBRARIES} glfw  _counter math_lib )
 
 if( MSVC )
     if(${CMAKE_VERSION} VERSION_LESS "3.6.0")

@@ -1,48 +1,54 @@
-#include <GL/glew.h>
 #define GLEW_STATIC
+#include <GL/glew.h>
+
 #include <GLFW/glfw3.h>
 #include <counter.h>
-#include "../math_lib/include/math_cpp.h"
+#include <include/math_cpp.h>
 #include <fstream>
-
-
+#include <iostream>
+#include <chrono>
+#include <thread>
 
 int main(void)
 {
-    
-    counter(2, "output1");
-    std::ofstream out2;
-    out2.open("output2.log");
-    mth::Matrix matrix{2, 2, {1, 2, 3, 4}};
-    out2 << matrix.ToString();
-    out2.close();
+   /*  // Инициализация GLFW
+    glfwInit();
+    // Настройка GLFW
+    // Задается минимальная требуемая версия OpenGL.
+    // Мажорная
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    // Минорная
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    // Установка профайла для которого создается контекст
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    // Выключение возможности изменения размера окна
+    glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-    /*GLFWwindow* window;
-
-    if (!glfwInit())
-        return -1;
-
-    window = glfwCreateWindow(640, 480, "draw collisions", NULL, NULL);
-    if (!window)
+    GLFWwindow *window = glfwCreateWindow(800, 600, "LearnOpenGL", nullptr, nullptr);
+    if (window == nullptr)
     {
+        std::cout << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
         return -1;
     }
     glfwMakeContextCurrent(window);
-    glClearColor( 0.4f, 0.3f, 0.4f, 0.0f );
+    //glewExperimental = GL_TRUE;
+    if (glewInit() != GLEW_OK)
+    {
+        std::cout << "Failed to initialize GLEW" << std::endl;
+        return -1;
+    }
+
+    int width, height;
+    glfwGetFramebufferSize(window, &width, &height);
+
+    //glViewport(0, 0, width, height);
 
     while (!glfwWindowShouldClose(window))
     {
-        GLfloat vertices[] = {
-            -.5f, -.5f, .0f,
-            .5f, -.5f, .0f,
-            .0f, .5f, .0f
-        };
-        glClear(GL_COLOR_BUFFER_BIT);
-        glfwSwapBuffers(window);
         glfwPollEvents();
+        glfwSwapBuffers(window);
     }
-
     glfwTerminate(); */
-    return 0;
+    return 0; 
 }

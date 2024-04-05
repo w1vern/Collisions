@@ -1,3 +1,6 @@
 [submodule "glfw"]
     path = glfw
     url = https://github.com/glfw/glfw
+[submodule "math_cpp"]
+    path = math_cpp
+    url = https://github.com/w1vern/math_cpp
