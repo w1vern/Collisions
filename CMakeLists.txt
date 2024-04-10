@@ -1,26 +1,27 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
 
-project(draw_collisions)
+set (PROJECT_NAME draw_collisions)
 
-#-------------
+project(${PROJECT_NAME})
+
+add_executable(${PROJECT_NAME}
+${CMAKE_SOURCE_DIR}/source/main.cpp
+)
 
 
-include_directories(${CMAKE_SOURCE_DIR}/glew-cmake/include)
-add_subdirectory(${CMAKE_SOURCE_DIR}/glew-cmake/build/cmake)
-find_package(GLEW REQUIRED)
+target_compile_features(${PROECT_NAME} PUBLIC cxx_std_20)
+
+set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+set(GLFW_INSTALL OFF CACHE BOOL "" FORCE)
 
 
-#-------------
+add_subdirectory(external/glfw)
+target_link_libraries(${PROJECT_NAME} glfw)
 
-#find_package( OpenGL REQUIRED )
-
-include_directories( ${OPENGL_INCLUDE_DIRS} )
-
-set( GLFW_BUILD_DOCS OFF CACHE BOOL  "GLFW lib only" )
-set( GLFW_INSTALL OFF CACHE BOOL  "GLFW lib only" )
-set( GLAD_GL "" )
-
-add_subdirectory( glfw )
+add_subdirectory(external/math_cpp)
+target_link_libraries(${PROJECT_NAME} math_cpp)
 
 option( draw_collisions-USE-GLFW-GLAD "Use GLAD from GLFW" OFF )
 
