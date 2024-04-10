@@ -4,3 +4,6 @@
 [submodule "external/math_cpp"]
 	path = external/math_cpp
 	url = https://github.com/w1vern/math_cpp
+[submodule "external/glew"]
+	path = external/glew
+	url = https://github.com/nigels-com/glew
