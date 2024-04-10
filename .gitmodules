@@ -1,7 +1,13 @@
-#[submodule "glfw"]
-#    path = exclude/glfw
-#    url = https://github.com/glfw/glfw
-#    
+[submodule "glfw"]
+	path = glfw
+	url = https://github.com/glfw/glfw
+    
 [submodule "math_cpp"]
-    path = exclude/math_cpp
+    path = external/math_cpp
     url = https://github.com/w1vern/math_cpp
+[submodule "external/glfw"]
+	path = external/glfw
+	url = https://github.com/glfw/glfw
+[submodule "external/math_cpp"]
+	path = external/math_cpp
+	url = https://github.com/w1vern/math_cpp
