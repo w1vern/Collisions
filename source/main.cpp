@@ -1,4 +1,4 @@
-#define GLEW_STATIC
+/* #define GLEW_STATIC
 #include <GL/glew.h>
 
 #include <GLFW/glfw3.h>
@@ -49,6 +49,12 @@ int main(void)
         glfwPollEvents();
         glfwSwapBuffers(window);
     }
-    glfwTerminate(); */
+    glfwTerminate();
     return 0; 
+} */
+
+int main()
+{
+
+    return 0;
 }
